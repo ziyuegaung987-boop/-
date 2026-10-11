@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#101b44"/><stop offset=".52" stop-color="#303664"/><stop offset="1" stop-color="#717596"/></linearGradient>
+ <radialGradient id="moon"><stop stop-color="#fff7d8" stop-opacity=".85"/><stop offset=".25" stop-color="#e9dcdd" stop-opacity=".35"/><stop offset="1" stop-color="#efe8ff" stop-opacity="0"/></radialGradient>
+ <linearGradient id="water" x2="0" y2="1"><stop stop-color="#3a5377"/><stop offset="1" stop-color="#16294c"/></linearGradient>
+ <linearGradient id="mount" x2="0" y2="1"><stop stop-color="#263b65"/><stop offset="1" stop-color="#142d52"/></linearGradient>
+ <filter id="soft"><feGaussianBlur stdDeviation="23"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<path d="M0 319Q200 225 395 299T747 262T1150 316T1600 245" stroke="#b0b3e1" stroke-width="92" opacity=".06" fill="none" filter="url(#soft)"/>
+<circle cx="1205" cy="212" r="258" fill="url(#moon)"/><circle cx="1205" cy="212" r="76" fill="#fff3d7"/><circle cx="1182" cy="189" r="72" fill="#fff9e7" opacity=".46"/>
+<g fill="#dae8ff"><circle cx="90" cy="85" r="3"/><circle cx="201" cy="246" r="2"/><circle cx="368" cy="91" r="4"/><circle cx="530" cy="185" r="2"/><circle cx="681" cy="66" r="3"/><circle cx="750" cy="302" r="2"/><circle cx="912" cy="155" r="4"/><circle cx="1023" cy="60" r="2"/><circle cx="1435" cy="130" r="3"/><circle cx="1518" cy="308" r="2"/><circle cx="116" cy="374" r="2"/><circle cx="467" cy="339" r="3"/><circle cx="837" cy="360" r="2"/><circle cx="1314" cy="390" r="2"/></g>
+<g stroke="#fff3dc" stroke-width="2" opacity=".72"><path d="M369 79v24m-12-12h24M910 141v28m-14-14h28M1435 119v22m-11-11h22M680 56v22m-11-11h22"/></g>
+<path d="M0 560 123 482 261 550 409 384 530 520 680 439 839 574 1000 402 1171 551 1340 453 1600 565V900H0Z" fill="#717492" opacity=".52"/>
+<path d="M0 660 203 511 350 619 507 470 664 645 850 488 1052 648 1280 505 1425 610 1600 481V900H0Z" fill="url(#mount)"/>
+<path d="M0 670Q280 631 558 689T1105 672T1600 664V900H0Z" fill="url(#water)"/>
+<path d="M1170 676q32 3 73 0m-82 26q43 4 91 0m-105 34q52 4 112 0m-122 40q72 5 143 0" stroke="#f6e1c1" stroke-width="6" stroke-linecap="round" opacity=".28"/>
+<path d="M0 770Q300 720 598 790T1100 773T1600 754V900H0Z" fill="#162c4e" opacity=".82"/>
+<g fill="#ffd99c" opacity=".8"><circle cx="155" cy="653" r="4"/><circle cx="368" cy="694" r="3"/><circle cx="770" cy="707" r="4"/><circle cx="997" cy="653" r="3"/><circle cx="1398" cy="676" r="5"/></g>
+<g fill="#c7e7f4" opacity=".44"><circle cx="140" cy="391" r="4"/><circle cx="611" cy="341" r="3"/><circle cx="1020" cy="329" r="3"/><circle cx="1510" cy="381" r="4"/></g>
+</svg>

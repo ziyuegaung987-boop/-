@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#6c84ae"/><stop offset=".34" stop-color="#c5a3ad"/><stop offset=".7" stop-color="#f1c29f"/><stop offset="1" stop-color="#ffe0b5"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#ffecc6" stop-opacity=".95"/><stop offset=".32" stop-color="#ffe0ba" stop-opacity=".6"/><stop offset="1" stop-color="#ffe0ba" stop-opacity="0"/></radialGradient>
+ <linearGradient id="far" x2="0" y2="1"><stop stop-color="#887e9d"/><stop offset="1" stop-color="#afb4b1"/></linearGradient>
+ <linearGradient id="mid" x2="0" y2="1"><stop stop-color="#536f86"/><stop offset="1" stop-color="#6e9296"/></linearGradient>
+ <linearGradient id="front" x2="0" y2="1"><stop stop-color="#375669"/><stop offset="1" stop-color="#315c67"/></linearGradient>
+ <linearGradient id="mist" x2="0" y2="1"><stop stop-color="#ffecd7" stop-opacity=".85"/><stop offset="1" stop-color="#ffe4ca" stop-opacity=".03"/></linearGradient>
+ <filter id="blur"><feGaussianBlur stdDeviation="24"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<circle cx="1150" cy="270" r="300" fill="url(#glow)"/><circle cx="1150" cy="270" r="80" fill="#ffe7c1" opacity=".88"/>
+<path d="M0 440 Q120 409 268 438T550 432T845 418T1160 444T1600 426V590H0Z" fill="#f9d9bf" opacity=".35"/>
+<path d="M0 514 130 463 240 494 400 346 537 499 724 350 822 448 1010 287 1163 468 1360 350 1600 485V900H0Z" fill="url(#far)" opacity=".77"/>
+<path d="M285 479 400 346 478 441 405 414Z M658 423 724 350 781 408Z M950 377 1010 287 1078 395 1011 353Z M1314 397 1360 350 1430 424Z" fill="#ead7d5" opacity=".6"/>
+<path d="M0 626 180 503 300 594 477 401 643 610 803 472 940 583 1113 418 1340 609 1515 467 1600 532V900H0Z" fill="url(#mid)" opacity=".91"/>
+<path d="M410 492 477 401 533 489 469 456Z M1063 489 1113 418 1170 491 1112 467Z" fill="#b5bfc4" opacity=".43"/>
+<path d="M0 665 Q250 590 475 650T920 632T1600 659V780H0Z" fill="url(#mist)" filter="url(#blur)"/>
+<path d="M0 860 110 674 255 742 415 590 540 714 673 626 815 787 980 581 1111 754 1300 615 1460 733 1600 601V900H0Z" fill="url(#front)"/>
+<path d="M0 834 Q250 800 440 832T830 815T1230 826T1600 802V900H0Z" fill="#c3b7af" opacity=".13"/>
+<g fill="none" stroke="#fff1e4" stroke-width="4" stroke-linecap="round" opacity=".46"><path d="M90 250q60-25 110 0t112-3"/><path d="M1210 135q80-27 151 0t147-3"/><path d="M650 200q44-15 90 0t90-4"/></g>
+<g fill="#fff6e8" opacity=".46"><circle cx="95" cy="184" r="3"/><circle cx="363" cy="130" r="2"/><circle cx="721" cy="113" r="3"/><circle cx="1480" cy="270" r="2"/></g>
+</svg>

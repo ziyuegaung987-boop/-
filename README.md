@@ -29,4 +29,4 @@ npm install
 npm run dev
 ```
 
-游客玩法可在本地体验；ChatGPT 登录与跨设备 D1 存档需要 Sites 部署环境。场景与关卡代码分别位于 `public/scenery.mjs` 和 `public/levels.mjs`。
+游客玩法可在本地体验；ChatGPT 登录与跨设备 D1 存档需要 Sites 部署环境。

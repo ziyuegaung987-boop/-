@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1791005989186,
+      "tag": "0000_warm_the_phantom",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1791029596734,
+      "tag": "0001_big_iron_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1791063806219,
+      "tag": "0002_premium_joystick",
+      "breakpoints": true
+    }
+  ]
+}
