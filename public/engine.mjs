@@ -120,17 +120,18 @@ export class FlightEngine {
     this.kiteTimer -= dt; this.letterTimer -= dt;
     if (this.kiteTimer <= 0 && !this.falcon) {
       const minY = ceiling + radius + 27, maxY = this.height * .72 - radius;
-      const y = minY + this.random() * Math.max(10, maxY - minY), moving = this.stage >= 3 || this.course > 1;
-      this.kites.push({ x: this.width + 45, y, phase: this.random() * Math.PI * 2, amplitude: moving ? 26 + this.course * 5 : 8 });
+      const y = minY + this.random() * Math.max(10, maxY - minY);
+      const moving = this.stage >= 3 || this.course > 1 || this.config.special === 'moving';
+      this.kites.push({ x: this.width + 45, y, phase: this.random() * Math.PI * 2, amplitude: this.config.special === 'moving' ? 45 + this.course * 5 : moving ? 26 + this.course * 5 : 8 });
       if (this.config.special === 'double' || this.config.special === 'finale' && this.stage >= 4) this.kites.push({ x: this.width + 155, y: y > this.height * .45 ? Math.max(ceiling + radius + 52, this.height * .31) : this.height * .68, phase: this.random() * 6, amplitude: 20 });
       this.kiteTimer = Math.max(1.8, (3.3 - this.stage * .13 - this.course * .07) / this.config.danger) + this.random() * .7;
     }
     if (this.letterTimer <= 0) {
-      if (this.waveRemaining === 0) { this.waveY = .30 + this.random() * .29; this.waveRemaining = this.stage >= 2 ? 3 : 1; this.waveIndex = 0; }
+      if (this.waveRemaining === 0) { this.waveY = .30 + this.random() * .29; this.waveRemaining = this.stage >= 2 || this.config.special === 'combo' ? 3 : 1; this.waveIndex = 0; }
       this.letterCount++;
       const flightOffset = this.config.flightLine[this.waveIndex++ % this.config.flightLine.length];
       this.letters.push({ x: this.width + 40, y: this.height * (this.waveY + flightOffset) + (this.random() - .5) * 12, phase: this.random() * 6, gold: (this.config.special === 'golden' ? this.letterCount % 3 === 0 : this.letterCount % 5 === 0) });
-      this.waveRemaining--; this.letterTimer = this.waveRemaining > 0 ? .5 : 1.25 + this.random() * .45;
+      this.waveRemaining--; this.letterTimer = this.waveRemaining > 0 ? (this.config.special === 'combo' ? .42 : .5) : 1.25 + this.random() * .45;
     }
     if (this.stage >= 3 || this.course > 1 || this.config.special === 'shield') {
       this.featherTimer -= dt;

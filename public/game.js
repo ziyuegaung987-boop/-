@@ -2,6 +2,7 @@ import { FlightEngine, COURSES } from './engine.mjs';
 import { LEVELS, TOTAL_LEVELS } from './levels.mjs';
 import { Soundscape } from './soundscape.mjs';
 import { paintScene } from './scenery.mjs';
+import { createDoubleTapDetector } from './input.mjs';
 
 const $ = id => document.getElementById(id);
 const canvas = $('game-canvas'), ctx = canvas.getContext('2d');
@@ -47,7 +48,8 @@ function sceneThumbnail(level) {
   }
   return sceneThumbs.get(level.id);
 }
-let saveQueue = Promise.resolve(), failedSave = null, lastSpace = 0, demoLift = 0;
+let saveQueue = Promise.resolve(), failedSave = null, demoLift = 0;
+const spaceGesture = createDoubleTapDetector();
 const tutorial = { active: false, step: 0 };
 const todayKey = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
 const dailyStorageKey = `${localKey}-daily`;
@@ -77,12 +79,18 @@ const game = new FlightEngine({ onEvent: event => {
   if (event.type === 'select') { updateCourse(); selectedWorld = game.course; renderMap(); }
   if (event.type === 'start' || event.type === 'resume') {
     overlay.hidden = true; $('playfield').classList.remove('overlay-open'); $('pause-button').disabled = false;
+    $('pause-button').setAttribute('aria-label', '暂停飞行');
+    $('pause-button').querySelector('path').setAttribute('d', 'M6 4v12M14 4v12');
     $('flap-button').hidden = false; $('mission-status').hidden = false; updateCourse(); sound.setCourse(game.course); sound.setPlaying(true);
     if (event.type === 'start') sound.effect('start');
     if (event.type === 'start') { $('inflight-hint').hidden = false; hintTimeout = setTimeout(() => $('inflight-hint').hidden = true, 4300); }
     $('game-status').textContent = event.type === 'start' ? '飞行开始。轻点屏幕或按空格键拍动翅膀。' : '继续飞行。';
   }
-  if (event.type === 'pause') { showOverlay('pause'); $('flap-button').hidden = true; $('mission-status').hidden = true; sound.setPlaying(false); }
+  if (event.type === 'pause') {
+    showOverlay('pause'); $('flap-button').hidden = true; $('mission-status').hidden = true; sound.setPlaying(false);
+    $('pause-button').setAttribute('aria-label', '继续飞行');
+    $('pause-button').querySelector('path').setAttribute('d', 'M7 4l9 6-9 6V4Z');
+  }
   if (event.type === 'collect') {
     sound.effect('collect'); if (game.course === 1) showLetterNote();
     if (event.total >= game.config.goal && event.total - (event.gold ? 2 : 1) < game.config.goal) toast('收集目标完成 · 接下来平安抵达！');
@@ -344,7 +352,7 @@ function pause() {
 }
 function setTutorialStep(step) {
   tutorial.step = step;
-  if (step === 1) lastSpace = 0;
+  if (step === 1) spaceGesture.reset();
   $('tutorial-progress').textContent = `${step + 1} / 3 · 试飞教学`;
   const title = ['先试着飞一下', '让时间停一停', '认认沿途的按键'][step];
   const description = [
@@ -362,7 +370,7 @@ function setTutorialStep(step) {
 function showTutorial() {
   if (game.state === 'playing') game.pause();
   game.selectLevel(game.level);
-  tutorial.active = true; lastSpace = 0;
+  tutorial.active = true; spaceGesture.reset();
   overlay.hidden = true; $('tutorial').hidden = false; $('playfield').classList.add('overlay-open');
   $('flap-button').hidden = false; setTutorialStep(0);
 }
@@ -689,8 +697,7 @@ window.addEventListener('keydown', event => {
   if (event.target instanceof HTMLButtonElement && (event.code === 'Space' || event.code === 'Enter')) return;
   if (event.code === 'Space') {
     event.preventDefault(); if (event.repeat) return;
-    const now = performance.now(), double = now - lastSpace < 300;
-    lastSpace = double ? 0 : now;
+    const double = spaceGesture.tap(performance.now());
     if (tutorial.active) { if (tutorial.step === 0) flap(); else if (tutorial.step === 1 && double) setTutorialStep(2); return; }
     if (double && (game.state === 'playing' || game.state === 'paused')) pause();
     else if (game.state !== 'paused') flap();
